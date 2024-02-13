@@ -1,0 +1,91 @@
+
+<!-- Username regex: must be a-z, A-z, 0-9. Finally, 3 <= length <= 18. -->
+        <!-- required pattern="(?=.*[a-zA-Z])[a-zA-Z0-9-_]{3,18}$" -->
+
+SearchContact:
+    - Requires a JSON package sent to SearchContact.php  containing:
+        > search containing the query (use "" for same as ListContacts)
+        > "userID" containing this user's account ID numValue
+    - returns:
+        - A JSON array that's either [] (no contacts found) or each element contains:
+            - "ID": contactID,
+            - "userID": thisUserAccount,
+            - "FirstName": "ContactFirstName",
+            - "LastName": "ContactLastName",
+            - "Email": "ContactEmail@email.com",
+            - "Phone": "Contact54884Phone"
+    - PSST: ListContacts is IDENTICAL when passed "" but does not send back userID.
+
+Tell, we can probably get rid of ListContacts, it's the same as SearchContact when you pass ""
+(the emtpy string) to SearchContact! Neither of them use lazy loading right now.
+            
+AddContact:
+    - Requires a JSON sent to AddContact.php containing:
+        > A "userID": numValue
+        > The contact info to add to this user, including the:
+            - firstName ""
+            - lastName ""
+            - email "(blah@email.end)"
+            - phone "(111-111-1111)"
+        > Currently, duplicate contacts are allowed.
+        > Returns: If added successfully, returns all of these exact fields in the same order back
+        plus "error": "". Empty string.
+        > It's possible to make EVERY FIELD BLANK right now; fix that in JS.
+            
+
+DeleteContact:
+    - This does not work, it says "Contact Deleted Succesfully" no matter what you type into body.
+    If I provide it NO user ID and ID, it says that.
+    - This needs to accept someone's username and password, verify they're logged in,
+    THEN it needs to accept their userID (account) and contact ID to delete and actually delete it
+    with DELETE FROM Contacts WHERE ID=###; and ### is "ID" (not userID).
+    Currently returns
+        - "id": 0 (why???)
+        - "firstName": "", (why, empty string)
+        - "lastName": "", (why, empty string)
+        - "error": "", (again empty string)
+        - "message": "Contact Deleted Succesfully!"
+
+EditContact (DOES NOT CHECK IF LOGGED IN BEFORE EDITING)
+    - Send EditContact.php a JSON containing:
+        - "userID": accountIDNumValue
+        - "id": contactIDNumValue
+        - "firstName" new first name of contact or make sure you keep same
+        - "lastName" new last name of contact or make sure you keep same
+        - "email" new email or keep same
+        - "phone" new phone or keep same
+            > Be sure to make an edit page that grabs all of this info of the contact you're editing
+            and fills out the fields in case the user only wants to edit 1 field.
+        - Returns with "message": "Contact Updated Succesfully!" even if UserID wrong or if fields
+          are left blank...
+
+ListContacts
+    - Just send "userID", returns a list of all contacts belonging to that user.
+        > DOES THIS CURRENTLY RETURN MORE THAN 10? LIST SHOULD DO 10 AT A TIME,
+        THIS IS WHAT WE CURRENTLY USE.
+            - Make it so when you search, it always overrides results with searchcontact.
+            - Make it so when you clear your search, does it...go back to showing 10 contacts?
+    - if userID is not found OR user has no contacts, returns [] (empty array)
+    - if userID has >= 1 contact, returns:
+        > A JSON array, where each element in the array contains:
+            "ID": contactIDNumber
+            "FirstName": "ContactFirstName"
+            "LastName": "ContactLastName"
+            "Email": "contact@email.com"
+            "Phone": "whateverIsStoredInHereLike000-123-4567or0000000000"
+        - This return is identical to SearchContact except it does not send back userID after ID.
+    
+
+Register:
+    - Send, word for word:
+        "FirstName" "nameHere" "LastName" "nameHere" "Username" "userhere" "Password" "passhere"
+        May receive an "error": "This Username is already in use"
+        Else this returns "info": "Registration Successful!"
+
+login.php:
+    - Send "Username" and "Password"
+    - Returns "id" numVal, "firstName" "accountFirstName", "lastName" "accountLastName", "error" ""
+        > "error" is "No Records Found" if invalid username/password combo entered.
+
+Clear function should wipe all contacts off the page before a fresh search/list.
+Don't allow fields to be left blank? Or do???

@@ -1,0 +1,320 @@
+﻿/* Main CSS for the contact manager. */
+/* To-do:
+      - Color palette/more easily appliable styles
+        > Most divs and content in HTML has already been assigned reoccuring classes. Use appropriate selectors
+          and write/overwrite them here to update them on all pages (such as all big boxes being class "formBox", all
+          groups of forms "formGroup", all text boxes to input something "inputBox", etc.).
+      - Recommendation: Change font-family: 'fontNameHere'; for true customization
+      - WARNING: This CSS is very messy and out of order. Half the things here may be unusued.
+*/
+
+.backgroundImg {
+    position: relative;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    animation-name: slide;
+    animation-duration: 2s;
+}
+
+@keyframes slide {
+  0%   {left:0px; top:-200px;}
+  100% {left:0px; top:0px;}
+}
+
+.formBox-login {
+  display: inline-block;
+  border-radius: 25px;
+  position: relative;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  background: rgba(115, 115, 115, 0.8);
+  max-width: 450px;
+  padding: 25px;
+  text-align: center;
+  overflow: hidden;
+  height: 220px;
+  transition: height 0.5s ease;
+}
+
+.formBox-register {
+  display: inline-block;
+  border-radius: 25px;
+  position: relative;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  background: rgba(115, 115, 115, 0.8);
+  max-width: 450px;
+  padding: 25px;
+  text-align: center;
+  overflow: hidden;
+  height: 314px;
+  transition: height 0.5s ease;
+}
+
+.lessMargin{
+    margin-top: 0;
+}
+
+a:link { color: cyan; }
+a​:visited { color: rgb(203, 195, 227); }
+
+.formBox-contacts {
+  display: inline-block;
+  border-radius: 25px;
+  position: relative;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  background: rgba(115, 115, 115, 0.8);
+  max-width: 450px;
+  padding: 25px;
+  text-align: center;
+  overflow: hidden;
+  height: auto;
+  transition: height 0.5s ease;
+}
+
+.formBox-addeditcontact {
+  display: inline-block;
+  border-radius: 25px;
+  position: relative;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  background: rgba(115, 115, 115, 0.8);
+  max-width: 450px;
+  padding: 25px;
+  text-align: center;
+  overflow: hidden;
+  height: auto;
+  transition: height 0.5s ease;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: rgba(34, 31, 32, 1);
+  color: rgb(255 255 255 / 100%);
+}
+
+.titleText {
+  color: rgb(210 66 245 / 100%);
+  font-family: 'Fraunces', serif;
+}
+
+.subtitleText2 {
+  color: rgb(17 14 183 / 100%);
+  font-family: 'Fraunces', serif;
+}
+
+.subtitleText {
+  color: rgb(96 144 244 / 100%);
+  font-family: 'Fraunces', serif;
+}
+
+.informationText {
+  color: rgb(255 255 255 / 100%);
+}
+
+h1 {
+  margin-top: 50px;
+}
+
+#divRegister {
+  margin-top: 20px;
+  display: inline-block;
+  text-align: left;
+}
+
+.error-message {
+    text-align: center;
+    color: darkred;
+    font-weight: bold;
+}
+
+.success-message {
+    text-align: center;
+    color: lightgreen;
+    font-weight: bold;
+}
+
+.text-container {
+  text-align: center;
+}
+
+.form-container {
+  margin: 0 auto;
+  max-width: 400px;
+  text-align: left;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.form-group label {
+  display: inline-block;
+  width: 200px;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.search-button {
+    outline: none;
+}
+
+.search-button input[type="text"]{
+    height: 15px;
+}
+
+input[type="text"] {
+  height: 30px; /* To-do: use to set height of input text boxes. Make search less big! */
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+  width: 200px;
+  box-sizing: border-box;
+  height: 30px;
+}
+
+.button-group {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.cancel-btn {
+  background-color: darkred; /* transparent is good */
+  border: none;
+  color: white;
+}
+
+.edit-btn {
+  background-color: #C6C600;
+  border: black;
+  color: black;
+}
+
+.register-btn {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+}
+
+.password-icon {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.valid {
+    color: rgb(76, 187, 23); /* color: lightgreen; is nice, too */
+    font-weight: bold;
+}
+
+.valid:before {
+    position: relative;
+    left: -10px;
+    content: "✓";
+}
+
+.invalid {
+    color: darkred;
+    font-weight: bold;
+}
+
+.invalid:before {
+    position: relative;
+    left: -10px;
+    content: "✗";
+}
+
+/* Auto-add colored borders when RegEx on input boxes is satisfied or not; this is separate from the JS code that validation-checks them. */
+.inputBox:valid {
+    border: 3px solid rgb(76, 187, 23); /* color: lightgreen; is nice, too */
+    outline: none;
+}
+
+.inputBox:invalid {
+    border: 3px solid darkred;
+    outline: none;
+}
+/* --- --- --- */
+
+
+
+/* Contacts table formatting */
+
+#contactsTable {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: auto;
+    width:75%;
+}
+
+table {
+    width:100%;
+    table-layout: fixed;
+    border-radius: 5px;
+}
+
+.tbl-content {
+    height: auto;
+    overflow-x: auto;
+    margin-top: 0px;
+    border: 1px solid black; /* or transparent */
+}
+
+.contacts td,
+.contacts th {
+    border: 1px solid black;
+}
+
+.contacts th {
+    padding: 20px 15px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    background-color: dimgray;
+    font-family: 'Fraunces', serif;
+}
+
+.contacts td {
+    padding: 15px;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 300;
+    font-size: 17px;
+    font-weight: bold;
+    color: darkblue;
+    background-color: darkgray;
+    overflow-wrap: break-word;
+}
+
+.centeredTD {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centeredTD button {
+    margin: 0 5px; /* Adjust the margin as needed */
+}
+
+.contactInfo {
+    color: darkblue;
+}

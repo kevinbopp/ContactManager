@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Page Head, External Files -->
+    <title>Edit Contact</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@800&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+</head>
+
+<body>
+    <!-- Main title and instructions to user on top center of webpage -->
+    <div>
+        <a href="contacts.html"><img src="images/siteLogo.png" alt="Logo of FullStack Bros website" style="width:150px;height:150px;cursor:pointer;"></a>
+    </div>
+
+    <div id="divEditContactHeader" class="titleText">
+        <h1 class="titleText lessMargin">Edit Contact</h1>
+    </div>
+
+    <br>
+
+    <!-- Box encompassing edit contact fields -->
+    <div id="divEditContact" class="formBox-addeditcontact">
+        
+        <!-- User intructions at top, always shows -->
+        <p class="informationText"><i>Change any desired fields below and click Update Contact to modify this contact.</i></p>
+        
+        <!-- Errors -->
+        <div id="divErrors" class="error-message">
+            <!-- Errors will appear here. When blank, use "&nbsp;" for a non-breaking space or "" for no space. -->
+            <p id="pErrorText">&nbsp;</p>
+        </div>
+
+        <!-- Success -->
+        <div id="divSuccess" class="success-message">
+            <!-- Successes will appear here (such as Contact Updated!). When blank, use "&nbsp;" for a non-breaking space or "" for no space. -->
+            <p id="pSuccessText"></p>
+        </div>
+
+        <!-- Div containing all input fields and labels for a new contact -->
+        <div id="divEditContactInputs" class="form-container">
+
+            <!-- First Name form (label and input) -->
+            <form id="formFirstName" class="form-group">
+                <label for="inputFirstName" class="informationText">First Name:</label>
+                <input type="text" class="inputBox" id="inputFirstName" placeholder="First Name" name="First Name" title="Enter the contact's first name here."
+                    required pattern="^(?=.{1,30}$)[a-zA-Z]+(?:-[a-zA-Z]+)*$" autocomplete="off" onkeypress="handleKeyPress(event, 0)">
+                <!-- Regex applied for first name: Must be between 1 and 30 alphabetical-only characters or hyphens in the middle of text -->
+            </form>
+
+            <!-- Last Name form (label and input) -->
+            <form id="formLastName" class="form-group">
+                <label for="inputLastName" class="informationText">Last Name:</label>
+                <input type="text" class="inputBox" id="inputLastName" placeholder="Last Name" name="Last Name" title="Enter the contact's last name here."
+                    required pattern="^(?=.{1,30}$)[a-zA-Z]+(?:-[a-zA-Z]+)*$" autocomplete="off" onkeypress="handleKeyPress(event, 0)">
+                <!-- Regex applied for last name: Must be between 1 and 30 alphabetical-only characters or hyphens in the middle of text -->
+            </form>
+
+            <!-- Phone Number form (label and input) -->
+            <form id="formPhoneNumber" class="form-group">
+                <label for="inputPhone" class="informationText">Phone Number:</label>
+                <input type="text" class="inputBox" id="inputPhone" placeholder="(123) 456-7890" name="Phone Number" title="Update the contact's phone number here."
+                    required pattern="^\(\d{3}\)\s\d{3}-\d{4}$" autocomplete="off" onkeypress="handleKeyPress(event, 0)">
+                <!-- Regex applied for phone number: Must be 0-9, exactly 15 characters, and allows () and - and " " -->
+                <!-- This regex does not support country code, default assumed is US (+1) -->
+                <!-- This is formatted as "(000) 000-0000" as the user types & when hitting submit, so the user only needs to enter numbers -->
+            </form>
+
+            <!-- Email form (label and input) -->
+            <form id="formEmail" class="form-group">
+                <label for="inputEmail" class="informationText">Email Address:</label>
+                <input type="text" class="inputBox" id="inputEmail" placeholder="example@email.com" name="Email" title="Update the contact's email here."
+                    required pattern = "^[^\s@]+@[^\s@]+\.[^\s@]+$" autocomplete="off" onkeypress="handleKeyPress(event, 5)">
+                <!-- Regex applied for email: *@*.* -->
+            </form>
+        </div>
+
+        <!-- Div for Cancel and Update Contact buttons -->
+        <div id="divUpdateCancelButtons">
+            <!-- Returns to contacts.html on click -->
+            <button id="buttonCancel" class="cancel-btn" onclick="window.location.href='contacts.html'">Go Back</button>
+
+            <!-- Clears all text entry fields by running clearAddForms() on click -->
+            <button id="buttonClear" class="cancel-btn" onclick="startOver();">Start Over</button>
+
+            <!-- Runs editContact() on click -->
+            <button id="buttonEditContact" class="register-btn" onclick="editContact();">Update Contact</button>
+        </div>
+
+    </div> <!-- End of edit contact form box -->
+</body>
+
+</html>

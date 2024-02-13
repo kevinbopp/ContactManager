@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Page Head, External Files -->
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@800&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+</head>
+
+<body>
+    <!-- Main title and welcome message on top center of webpage -->
+    <div>
+        <img src="images/siteLogo.png" alt="Logo of FullStack Bros website" style="width:150px;height:150px;">
+    </div>
+
+    <div id="divContactsHeader">
+        <h1 class="titleText lessMargin">Home</h1>
+
+        <!-- Custom user welcome message -->
+        <div id="divWelcomeMessage">
+            <h2 id="userWelcome" class="subtitleText">Welcome, !</h2> <!-- Updates with first name of user -->
+            
+        </div>
+
+        <br>
+
+        <!-- Div box containing instructions and buttons for logging out/adding a new contact -->
+        <div id="divMainButtons" class="formBox-contacts">
+            <!-- Instructions text -->
+            <p class="informationText">Add, update, search, or view contacts below.</p>
+            <!-- Sign Out button; to-do, clear cookie? to actually sign out, currently just redirects page -->
+            <button id="buttonSignOut" class="cancel-btn" onclick="logout();">Sign Out</button>
+
+            <!-- Add New Contact button; runs no code, takes user to addnewcontact.html -->
+            <button id="buttonAddContact" class="register-btn" onclick="window.location.href='addnewcontact.html'">Add New Contact</button>
+        </div>
+    </div>
+
+    <!-- A healthy amount of blank space between the buttons at the top and the search bar/contacts region -->
+    <br> <br> <br>
+
+    <!-- Div containing search function and contacts box -->
+    <div id="divContactsAndButtons">
+        
+        <!-- Search bar and button -->
+        <div id="divSearch">
+            <label for="inputSearch" class="informationText">Enter a name, number, or email:</label>
+            <input type="search" id="inputSearch" class="search-button" placeholder="Enter a Name" name="Search" title="Enter part of or a whole name to search here."
+                autocomplete="off" onkeyup="formatSearch()" onkeypress="handleKeyPress(event, 3)", required>
+            <!-- Regex applied for search: Must be a-z, A-Z, 0-9 (note, searching "" will return all contacts) -->
+
+            <!-- Search button; performs searchContacts() on click -->
+            <button id="buttonSearch" class="register-btn" type="button" onclick="searchContacts();">Search</button>
+        </div>
+
+        <br>
+        
+        <!-- Container that lazy-loads separate boxes containing contact information -->
+        <!-- Currently uses same box class as login/register forms, we could change the class on this div to be custom -->
+        <!-- <div id="divContacts" class="formBox"> -->
+            <!-- Grid layout? -->
+        <!-- </div> -->
+
+        <!-- Div containing the contact table -->
+        <div class="tables">
+            <!-- Div used for CSS purposes to format table properly in above container -->
+            <div class="tbl-content" id="divContactsTable">
+                <!-- Actual table storing contacts -->
+                <table id="tableContactsMain" class="contacts" cellpadding="0" cellspacing="0" border="0">
+                    <!-- Header of table, just a single row; note we group header content in a thread -->
+                    <thread>
+                        <tr>
+                            <!-- Titles of each box -->
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Phone Number</th>
+                            <th>Email Address</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thread>
+                    <!-- Remaining rows are added dynamically and store contact information/action buttons -->
+                    <tbody id="tableContacts"></tbody>
+                        <!-- Contact rows will be entered here. Each will be identified by an ID from 0 on. -->
+                        <!-- Note, <th> are header cells and formatted differently from table data cells <td>. -->
+                            <!-- Example, there will be <tr id="tr1, tr2, etc."></tr> -->
+                                <!-- Within each table row, there will be a <td id="fn0"></td>, for each fn ln e p with the same ID. -->
+                                    <!-- Within each <td>, a simple <span> will show the text so the text is displayed inline (versus a div). -->
+                                <!-- The final <td> has no id as it is the same for each table row: an edit and delete button each by itself, each -->
+                                <!-- with an ID with the same ID number like edit0 delete0 that calls editContact(pass in 0), deleteContact(pass in 0) -->
+                        <!--<tr> -->
+                        <!-- Titles of each box -->
+                        <!--<td>First Name</th>-->
+                        <!--<td>Last Name</th>-->
+                        <!--<td>Phone Number</th>-->
+                        <!--<td>Email Address</th>-->
+                        <!--<td>Actions</th>-->
+                        <!--</tr> -->
+
+                </table>
+            </div>
+        </div>
+</body>
+
+</html>

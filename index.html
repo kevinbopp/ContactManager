@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Page Head, External Files -->
+    <title>Contact Manager - Landing</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@800&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+</head>
+
+<body>
+    
+    <div class="backgroundImg">
+        <a href="https://github.com/Srignan/ContactManager"><img src="images/siteLogo.png" alt="Logo of FullStack Bros website" style="width:150px;height:150px;cursor:pointer;"></a>
+    </div>
+
+    <!-- Main title on top center of webpage -->
+    <div id="divHeader">
+        <h1 class="titleText lessMargin">FullStack Bros. Contact Manager</h1>
+
+        <div id="divWelcomeMessage">
+            <h2 class="subtitleText">Welcome back!</h2> <!-- Message displayed to user regardless if new or not -->
+        </div>
+    </div>
+
+    <br>
+
+    <!-- Box encompassing login fields -->
+    <div id="divLoginForm" class="formBox-login">
+        <!-- User intructions at top, always shows -->
+        <p class="informationText"><i>Enter your information below to sign in.</i></p>
+        
+        <!-- Errors -->
+        <div id="divLoginErrors" class="error-message">
+            <!-- Errors will appear here. When blank, use "&nbsp;" for a non-breaking space -->
+            <p id="pErrorText">&nbsp;</p>
+        </div>
+        
+        <!-- Div containing all login input fields and labels -->
+        <div id="divLoginInputs" class="form-container">
+            
+            <!-- Username form (label and input) -->
+            <form id="formUsername" class="form-group">
+                <label for="inputUsername" class="informationText">Enter username:</label>
+                <input type="text" class="inputBox" id="inputUsername" placeholder="Username" name="Username" title="Enter your username here."
+                    required pattern="^(?=.{2,20}$)[a-zA-Z0-9\-_]*$" autocomplete="username" onkeypress="handleKeyPress(event, 0)">
+                <!-- For login, user must provide a username with at least one letter that is a-z, A-Z, 0-9, 2 <= length <= 20. - and _ allowed -->
+            </form>
+
+            <!-- Password form (label, input, and eye icon) -->
+            <form id="formPassword" class="form-group">
+                <label for="inputPassword" class="informationText">Enter password:</label>
+                <input type="password" class="inputBox" id="inputPassword" placeholder="Password" name="Password" title="Enter your password here."
+                    required pattern="^(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,24}$" autocomplete="password" onkeypress="handleKeyPress(event, 1)">
+                <!-- For login, user must provide a password with at least one number (0-9), at least one uppercase char (A-Z) and 8 <= length <= 24 -->
+                <!-- One special character is also required, and can be any of the following: ! @ # $ % ^ & * -->
+
+                <!-- Eye icon for toggling password visibility -->
+                <img id="inputPasswordIcon" class="password-icon" src="images/passwordHidden.png" alt="Show/Hide Password Icon"
+                    onclick="togglePasswordVisibility('inputPassword');" />
+            </form>
+        </div>
+        
+        <br>
+        
+        <!-- Login Button div -->
+        <div id="divLoginButton">
+            <!-- Runs login() on click -->
+            <button id="buttonLogin" type="button" class="register-btn" onclick="login();">Login</button>
+        </div>
+    </div> <!-- End of registration form box -->
+    
+    <!-- Gap between the login form and "Register here!" text -->
+    <br>
+
+    <!-- Register here! Anchor text with hyperlink takes user to register.html. -->
+    <div id="divRegister">
+        <p class="informationText">New user? Click <a href="register.html">here</a> to sign up!</p>
+    </div>
+</body>
+
+</html>
