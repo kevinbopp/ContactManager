@@ -476,7 +476,12 @@ function readLoginCookie()
     }
 
     // If we checked every cookie and made it here, we are NOT logged in. Return null and re-direct the user.
-    window.location.href = 'index.html';
+    //window.location.href = 'index.html';
+    
+    // Disabled due to portfolio hosting purposes. Instead, allow manual page navigation and fill in a blank user.
+    firstName = "Test";
+    lastName = "User";
+    document.getElementById('userWelcome').innerHTML = "Welcome, " + firstName + "!";
     return null;
 }
 
